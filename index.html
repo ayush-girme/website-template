@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tithi.ai — The Advanced AI Masterclass</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Phosphor Icons CDN -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" defer></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            navy: '#0A2947',
+            ice: '#AACCD6',
+            orange: '#FF6A1C',
+            offwhite: '#FAF6F0',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    html { font-family: 'Inter', sans-serif; }
+
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #FF6A1C;
+      transition: width 0.22s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #FF6A1C 0%, #ff8c4c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .feature-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(10, 41, 71, 0.08);
+    }
+
+    .logo-item {
+      filter: grayscale(100%) opacity(0.45);
+      transition: filter 0.2s;
+    }
+    .logo-item:hover { filter: grayscale(0%) opacity(1); }
+
+    @keyframes pulse-ring {
+      0%   { box-shadow: 0 0 0 0 rgba(255, 106, 28, 0.35); }
+      70%  { box-shadow: 0 0 0 10px rgba(255, 106, 28, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 106, 28, 0); }
+    }
+    .pulse-badge { animation: pulse-ring 2.4s ease-out infinite; }
+
+    .stat-block {
+      border-left: 3px solid #FF6A1C;
+    }
+
+    .cta-banner {
+      background: linear-gradient(135deg, #051626 0%, #0A2947 100%);
+    }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+
+<body class="bg-offwhite text-navy antialiased">
+
+<!-- ===================== NAVIGATION ===================== -->
+<nav class="sticky top-0 z-50 bg-offwhite/95 backdrop-blur border-b border-ice/40 shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+
+      <a href="#" class="flex items-center gap-2.5 flex-shrink-0">
+        <div class="w-8 h-8 rounded-lg bg-orange flex items-center justify-center">
+          <i class="ph-bold ph-lightning text-white text-base"></i>
+        </div>
+        <span class="text-xl font-bold tracking-tight text-navy">tithi<span class="text-orange">.ai</span></span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-7">
+        <a href="#curriculum" class="nav-link text-sm font-medium text-navy/70 hover:text-navy">Curriculum</a>
+        <a href="#outcomes"   class="nav-link text-sm font-medium text-navy/70 hover:text-navy">Outcomes</a>
+        <a href="#reviews"    class="nav-link text-sm font-medium text-navy/70 hover:text-navy">Reviews</a>
+        <a href="#pricing"    class="nav-link text-sm font-medium text-navy/70 hover:text-navy">Pricing</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="lesson.html" class="hidden md:inline text-sm...">Student Login</a>
+        <a href="#pricing" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-orange hover:bg-[#e55f17] text-white text-sm font-semibold transition-colors shadow-sm">
+          Enroll Now
+          <i class="ph-bold ph-arrow-right text-sm"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+
+<!-- ===================== HERO ===================== -->
+<section class="relative overflow-hidden bg-offwhite pt-20 pb-24 lg:pt-28 lg:pb-32">
+
+  <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div class="absolute -top-32 -right-40 w-[700px] h-[700px] rounded-full bg-ice opacity-20 blur-3xl"></div>
+    <div class="absolute bottom-0 -left-24 w-[400px] h-[400px] rounded-full bg-ice opacity-30 blur-2xl"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-14 items-center">
+
+      <div class="reveal">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange/10 border border-orange/30 text-orange text-xs font-semibold mb-6 pulse-badge">
+          <i class="ph-bold ph-graduation-cap text-orange"></i>
+          Complete Masterclass Series — Registration Open
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-[3.4rem] font-extrabold leading-[1.12] tracking-tight text-navy mb-6">
+          Master Enterprise AI.<br />
+          From Prompt to<br />
+          <span class="gradient-text">Production.</span>
+        </h1>
+
+        <p class="text-lg text-navy/70 leading-relaxed max-w-lg mb-8">
+          The definitive masterclass for IT professionals. Learn to architect scalable generative AI systems, engineer deterministic prompts, and deploy advanced real-world automations.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-3 mb-12">
+          <a href="#pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-orange hover:bg-[#e55f17] text-white font-semibold text-sm transition-colors shadow-md">
+            Enroll Today
+            <i class="ph-bold ph-arrow-right"></i>
+          </a>
+          <a href="#curriculum" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-navy text-navy hover:text-white font-semibold text-sm transition-colors">
+            <i class="ph-bold ph-list-dashes"></i>
+            View Curriculum
+          </a>
+        </div>
+
+        <div class="flex flex-wrap gap-6">
+          <div class="stat-block pl-4">
+            <p class="text-2xl font-extrabold text-navy">40+</p>
+            <p class="text-xs text-navy/60 font-medium mt-0.5">hours of video lessons</p>
+          </div>
+          <div class="stat-block pl-4">
+            <p class="text-2xl font-extrabold text-navy">4.9★</p>
+            <p class="text-xs text-navy/60 font-medium mt-0.5">average student rating</p>
+          </div>
+          <div class="stat-block pl-4">
+            <p class="text-2xl font-extrabold text-navy">Lifetime</p>
+            <p class="text-xs text-navy/60 font-medium mt-0.5">access & updates</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative reveal" style="transition-delay: 0.12s;">
+        <div class="rounded-2xl overflow-hidden shadow-2xl border border-ice/50">
+          <img
+            src="https://placehold.co/640x440/AACCD6/0A2947?text=Course+Video+Player&font=inter"
+            alt="Course Dashboard Interface"
+            class="w-full object-cover"
+          />
+        </div>
+        <div class="absolute -bottom-5 -left-5 bg-white rounded-xl shadow-xl border border-ice/40 px-4 py-3 flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-ice/40 flex items-center justify-center">
+            <i class="ph-bold ph-certificate text-navy text-lg"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold text-navy">Module 1 Completed</p>
+            <p class="text-xs text-navy/60">Intro to Deterministic Prompts</p>
+          </div>
+        </div>
+        <div class="absolute -top-4 -right-4 bg-white rounded-xl shadow-xl border border-ice/40 px-4 py-3 flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-orange/20 flex items-center justify-center">
+            <i class="ph-bold ph-code text-orange text-lg"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold text-navy">Hands-on Lab</p>
+            <p class="text-xs text-navy/60">Architecting your first RAG pipeline</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== SOCIAL PROOF / LOGO CLOUD ===================== -->
+<section class="bg-ice/20 border-y border-ice/40 py-14">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <p class="text-center text-xs font-semibold tracking-widest text-navy/50 uppercase mb-10">
+      Join 2,500+ IT professionals from industry-leading companies
+    </p>
+    <div class="grid grid-cols-3 sm:grid-cols-6 gap-8 items-center justify-items-center">
+      <img class="logo-item h-7 object-contain" src="https://placehold.co/120x32/FAF6F0/0A2947?text=Google&font=inter"   alt="Google" />
+      <img class="logo-item h-7 object-contain" src="https://placehold.co/120x32/FAF6F0/0A2947?text=Amazon&font=inter"  alt="Amazon" />
+      <img class="logo-item h-7 object-contain" src="https://placehold.co/120x32/FAF6F0/0A2947?text=Microsoft&font=inter"    alt="Microsoft" />
+      <img class="logo-item h-7 object-contain" src="https://placehold.co/120x32/FAF6F0/0A2947?text=Cisco&font=inter" alt="Cisco" />
+      <img class="logo-item h-7 object-contain" src="https://placehold.co/120x32/FAF6F0/0A2947?text=IBM&font=inter"  alt="IBM" />
+      <img class="logo-item h-7 object-contain" src="https://placehold.co/120x32/FAF6F0/0A2947?text=Accenture&font=inter"  alt="Accenture" />
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== CURRICULUM ===================== -->
+<section id="curriculum" class="bg-white py-24">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+    <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+      <span class="inline-block text-xs font-semibold tracking-widest uppercase text-orange mb-3">Course Modules</span>
+      <h2 class="text-3xl lg:text-4xl font-extrabold text-navy mb-4">
+        Everything you need to become an AI Systems Architect.
+      </h2>
+      <p class="text-base text-navy/70 leading-relaxed">
+        We skip the fluff. This course dives straight into the technical architectures, deployment strategies, and security protocols you need for production environments.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="feature-card bg-offwhite rounded-xl p-7 border border-ice/40 reveal">
+        <div class="w-11 h-11 rounded-lg bg-ice/40 flex items-center justify-center mb-5">
+          <i class="ph-bold ph-terminal-window text-navy text-xl"></i>
+        </div>
+        <h3 class="text-base font-bold text-navy mb-2">Module 1: Prompt Engineering</h3>
+        <p class="text-sm text-navy/70 leading-relaxed">
+          Move beyond basic queries. Learn few-shot prompting, chain-of-thought methodologies, and how to format strict JSON outputs for API consumption.
+        </p>
+      </div>
+
+      <div class="feature-card bg-offwhite rounded-xl p-7 border border-ice/40 reveal" style="transition-delay:0.07s">
+        <div class="w-11 h-11 rounded-lg bg-ice/40 flex items-center justify-center mb-5">
+          <i class="ph-bold ph-network text-navy text-xl"></i>
+        </div>
+        <h3 class="text-base font-bold text-navy mb-2">Module 2: RAG & Vector Databases</h3>
+        <p class="text-sm text-navy/70 leading-relaxed">
+          Master Retrieval-Augmented Generation. Learn to chunk documents, generate semantic embeddings, and query vector databases (Pinecone, Weaviate).
+        </p>
+      </div>
+
+      <div class="feature-card bg-offwhite rounded-xl p-7 border border-ice/40 reveal" style="transition-delay:0.14s">
+        <div class="w-11 h-11 rounded-lg bg-ice/40 flex items-center justify-center mb-5">
+          <i class="ph-bold ph-users-three text-navy text-xl"></i>
+        </div>
+        <h3 class="text-base font-bold text-navy mb-2">Module 3: Multi-Agent Systems</h3>
+        <p class="text-sm text-navy/70 leading-relaxed">
+          Design autonomous agent loops. Understand tool calling, memory management, and orchestration frameworks like LangChain and AutoGen.
+        </p>
+      </div>
+
+      <div class="feature-card bg-offwhite rounded-xl p-7 border border-ice/40 reveal" style="transition-delay:0.21s">
+        <div class="w-11 h-11 rounded-lg bg-ice/40 flex items-center justify-center mb-5">
+          <i class="ph-bold ph-workflow text-navy text-xl"></i>
+        </div>
+        <h3 class="text-base font-bold text-navy mb-2">Module 4: Enterprise Automations</h3>
+        <p class="text-sm text-navy/70 leading-relaxed">
+          Connect your AI systems to the real world. Securely integrate with Slack, Jira, Salesforce, and internal APIs using OAuth and Webhooks.
+        </p>
+      </div>
+
+      <div class="feature-card bg-offwhite rounded-xl p-7 border border-ice/40 reveal" style="transition-delay:0.28s">
+        <div class="w-11 h-11 rounded-lg bg-ice/40 flex items-center justify-center mb-5">
+          <i class="ph-bold ph-shield-check text-navy text-xl"></i>
+        </div>
+        <h3 class="text-base font-bold text-navy mb-2">Module 5: Security & Governance</h3>
+        <p class="text-sm text-navy/70 leading-relaxed">
+          Protect sensitive data. Implement guardrails, handle PII redaction, prevent prompt injection attacks, and ensure SOC 2 compliance in AI models.
+        </p>
+      </div>
+
+      <div class="feature-card bg-offwhite rounded-xl p-7 border border-ice/40 reveal" style="transition-delay:0.35s">
+        <div class="w-11 h-11 rounded-lg bg-ice/40 flex items-center justify-center mb-5">
+          <i class="ph-bold ph-rocket-launch text-navy text-xl"></i>
+        </div>
+        <h3 class="text-base font-bold text-navy mb-2">Module 6: Capstone Project</h3>
+        <p class="text-sm text-navy/70 leading-relaxed">
+          Build a fully functional, serverless AI application from scratch. Deploy your final architecture to AWS/Vercel to showcase in your portfolio.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== PROJECT BASED LEARNING ===================== -->
+<section id="outcomes" class="bg-offwhite py-24 border-y border-ice/40">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <div class="reveal">
+        <span class="inline-block text-xs font-semibold tracking-widest uppercase text-orange mb-4">Hands-On Methodology</span>
+        <h2 class="text-3xl lg:text-4xl font-extrabold text-navy mb-5 leading-tight">
+          Stop watching slides. Start writing code.
+        </h2>
+        <p class="text-base text-navy/70 leading-relaxed mb-8">
+          Theory only gets you so far. This course is heavily project-based. You will be writing scripts, configuring APIs, and deploying live models in our dedicated sandbox environments alongside the instructor.
+        </p>
+        <ul class="space-y-4 mb-9">
+          <li class="flex items-start gap-3">
+            <div class="mt-0.5 w-5 h-5 rounded-full bg-ice/50 flex items-center justify-center flex-shrink-0">
+              <i class="ph-bold ph-check text-navy text-xs"></i>
+            </div>
+            <p class="text-sm text-navy/80">Follow along with downloadable starter repositories for every module.</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="mt-0.5 w-5 h-5 rounded-full bg-ice/50 flex items-center justify-center flex-shrink-0">
+              <i class="ph-bold ph-check text-navy text-xs"></i>
+            </div>
+            <p class="text-sm text-navy/80">Build a portfolio of 4 fully functional AI applications to show employers.</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="mt-0.5 w-5 h-5 rounded-full bg-ice/50 flex items-center justify-center flex-shrink-0">
+              <i class="ph-bold ph-check text-navy text-xs"></i>
+            </div>
+            <p class="text-sm text-navy/80">Access our private Discord community to debug code with peers.</p>
+          </li>
+        </ul>
+        <a href="#pricing" class="inline-flex items-center gap-2 text-sm font-semibold text-orange hover:text-[#e55f17] transition-colors">
+          View full project list <i class="ph-bold ph-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="reveal" style="transition-delay:0.1s">
+        <div class="rounded-2xl overflow-hidden shadow-xl border border-ice/50">
+          <img
+            src="https://placehold.co/600x420/AACCD6/0A2947?text=IDE+Code+Preview&font=inter"
+            alt="Code Editor Preview"
+            class="w-full object-cover"
+          />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== CERTIFICATION ===================== -->
+<section class="bg-white py-24">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <div class="reveal order-2 lg:order-1">
+        <div class="rounded-2xl overflow-hidden shadow-xl border border-ice/50">
+          <img
+            src="https://placehold.co/600x420/AACCD6/0A2947?text=Official+Certificate&font=inter"
+            alt="Course Certificate"
+            class="w-full object-cover"
+          />
+        </div>
+      </div>
+
+      <div class="reveal order-1 lg:order-2" style="transition-delay:0.1s">
+        <span class="inline-block text-xs font-semibold tracking-widest uppercase text-orange mb-4">Official Certification</span>
+        <h2 class="text-3xl lg:text-4xl font-extrabold text-navy mb-5 leading-tight">
+          Prove your expertise to future employers.
+        </h2>
+        <p class="text-base text-navy/70 leading-relaxed mb-8">
+          Upon successfully completing the coursework and submitting your final capstone project, you will receive an industry-recognized certification verified by Tithi.ai. 
+        </p>
+        <ul class="space-y-4 mb-9">
+          <li class="flex items-start gap-3">
+            <div class="mt-0.5 w-5 h-5 rounded-full bg-ice/50 flex items-center justify-center flex-shrink-0">
+              <i class="ph-bold ph-linkedin-logo text-navy text-xs"></i>
+            </div>
+            <p class="text-sm text-navy/80">1-click integration to add the credential to your LinkedIn profile.</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="mt-0.5 w-5 h-5 rounded-full bg-ice/50 flex items-center justify-center flex-shrink-0">
+              <i class="ph-bold ph-link text-navy text-xs"></i>
+            </div>
+            <p class="text-sm text-navy/80">Unique blockchain-verified URL to prove authenticity to recruiters.</p>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== REVIEWS ===================== -->
+<section id="reviews" class="bg-ice/20 border-y border-ice/40 py-24">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+    <div class="text-center mb-14 reveal">
+      <span class="inline-block text-xs font-semibold tracking-widest uppercase text-orange mb-3">Student Reviews</span>
+      <h2 class="text-3xl font-extrabold text-navy">Don't just take our word for it</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <div class="bg-white rounded-xl border border-ice/40 shadow-sm p-7 reveal">
+        <div class="flex items-center gap-1 mb-4">
+          <i class="ph-fill ph-star text-orange"></i>
+          <i class="ph-fill ph-star text-orange"></i>
+          <i class="ph-fill ph-star text-orange"></i>
+          <i class="ph-fill ph-star text-orange"></i>
+          <i class="ph-fill ph-star text-orange"></i>
+        </div>
+        <p class="text-sm text-navy/80 leading-relaxed mb-6">
+          "The most comprehensive technical deep-dive on LLMs I've found. I used the Module 3 concepts to pitch a new AI automation tool to my boss, and it landed me a promotion to Lead Architect."
+        </p>
+        <div class="flex items-center gap-3">
+          <img src="https://placehold.co/40/AACCD6/0A2947?text=DK&font=inter" class="w-10 h-10 rounded-full object-cover" alt="David K." />
+          <div>
+            <p class="text-sm font-semibold text-navy">David Kim</p>
+            <p class="text-xs text-navy/60">Senior Software Engineer</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-ice/40 shadow-sm p-7 reveal" style="transition-delay:0.1s">
+        <div class="flex items-center gap-1 mb-4">
+          <i class="ph-fill ph-star text-orange"></i>
+          <i class="ph-fill ph-star text-orange"></i>
+          <i class="ph-fill ph-star text-orange"></i>
+          <i class="ph-fill ph-star text-orange"></i>
+          <i class="ph-fill ph-star text-orange"></i>
+        </div>
+        <p class="text-sm text-navy/80 leading-relaxed mb-6">
+          "I was struggling to understand Vector Databases. The way the instructor broke down embedding structures and RAG retrieval in Module 2 was an absolute lightbulb moment for me."
+        </p>
+        <div class="flex items-center gap-3">
+          <img src="https://placehold.co/40/AACCD6/0A2947?text=AJ&font=inter" class="w-10 h-10 rounded-full object-cover" alt="Anita J." />
+          <div>
+            <p class="text-sm font-semibold text-navy">Anita Jones</p>
+            <p class="text-xs text-navy/60">Data Scientist</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl border border-ice/40 shadow-sm p-7 reveal" style="transition-delay:0.2s">
+        <div class="flex items-center gap-1 mb-4">
+          <i class="ph-fill ph-star text-orange"></i>
+          <i class="ph-fill ph-star text-orange"></i>
+          <i class="ph-fill ph-star text-orange"></i>
+          <i class="ph-fill ph-star text-orange"></i>
+          <i class="ph-fill ph-star text-orange"></i>
+        </div>
+        <p class="text-sm text-navy/80 leading-relaxed mb-6">
+          "Worth every penny. The capstone project gave me the exact boilerplate code I needed to kickstart my startup's AI backend. The Discord community is also incredibly helpful for debugging."
+        </p>
+        <div class="flex items-center gap-3">
+          <img src="https://placehold.co/40/AACCD6/0A2947?text=MP&font=inter" class="w-10 h-10 rounded-full object-cover" alt="Marcus P." />
+          <div>
+            <p class="text-sm font-semibold text-navy">Marcus Patel</p>
+            <p class="text-xs text-navy/60">Startup Founder</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== PRICING ===================== -->
+<section id="pricing" class="bg-white py-24">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+    <div class="text-center max-w-xl mx-auto mb-14 reveal">
+      <span class="inline-block text-xs font-semibold tracking-widest uppercase text-orange mb-3">Enrollment</span>
+      <h2 class="text-3xl font-extrabold text-navy mb-3">Invest in your career</h2>
+      <p class="text-sm text-navy/70">Simple, one-time payment. Get instant access to all modules, future updates, and the private community.</p>
+    </div>
+
+    <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 items-stretch">
+
+      <!-- Pro Learner (highlighted) -->
+      <div class="rounded-xl border-2 border-orange p-8 flex flex-col relative shadow-lg reveal">
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2">
+          <span class="bg-orange text-white text-xs font-bold px-3 py-1 rounded-full tracking-wide">Most Popular</span>
+        </div>
+        <p class="text-sm font-semibold text-orange mb-1">Individual License</p>
+        <p class="text-4xl font-extrabold text-navy mb-1">$299</p>
+        <p class="text-xs text-navy/50 mb-6">One-time payment · Lifetime Access</p>
+        <ul class="space-y-3 mb-8 flex-1">
+          <li class="flex items-center gap-2 text-sm text-navy/80"><i class="ph-bold ph-check-circle text-orange"></i> Full 40+ Hour Video Curriculum</li>
+          <li class="flex items-center gap-2 text-sm text-navy/80"><i class="ph-bold ph-check-circle text-orange"></i> All Code Templates & Boilerplates</li>
+          <li class="flex items-center gap-2 text-sm text-navy/80"><i class="ph-bold ph-check-circle text-orange"></i> Access to Private Student Discord</li>
+          <li class="flex items-center gap-2 text-sm text-navy/80"><i class="ph-bold ph-check-circle text-orange"></i> Verified LinkedIn Certificate</li>
+          <li class="flex items-center gap-2 text-sm text-navy/80"><i class="ph-bold ph-check-circle text-orange"></i> Free Updates for Life</li>
+        </ul>
+        <a href="#" class="block text-center py-3 px-4 rounded-lg bg-orange hover:bg-[#e55f17] text-white font-semibold transition-colors shadow-md">
+          Enroll Now
+        </a>
+      </div>
+
+      <!-- Team -->
+      <div class="rounded-xl border border-ice p-8 flex flex-col reveal" style="transition-delay:0.1s">
+        <p class="text-sm font-semibold text-navy/60 mb-1">Team License</p>
+        <p class="text-4xl font-extrabold text-navy mb-1">$999</p>
+        <p class="text-xs text-navy/50 mb-6">One-time payment · Up to 5 Seats</p>
+        <ul class="space-y-3 mb-8 flex-1">
+          <li class="flex items-center gap-2 text-sm text-navy/80"><i class="ph-bold ph-check-circle text-orange"></i> Everything in Individual License</li>
+          <li class="flex items-center gap-2 text-sm text-navy/80"><i class="ph-bold ph-check-circle text-orange"></i> 5 Independent Student Accounts</li>
+          <li class="flex items-center gap-2 text-sm text-navy/80"><i class="ph-bold ph-check-circle text-orange"></i> Centralized Billing / Invoice</li>
+          <li class="flex items-center gap-2 text-sm text-navy/80"><i class="ph-bold ph-check-circle text-orange"></i> Manager Progress Dashboard</li>
+        </ul>
+        <a href="#" class="block text-center py-3 px-4 rounded-lg border border-navy text-navy hover:text-orange hover:border-orange font-semibold transition-colors">
+          Buy for Your Team
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== BOTTOM CTA BANNER ===================== -->
+<section class="cta-banner py-20">
+  <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center reveal">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white/80 text-xs font-medium mb-6">
+      <i class="ph-bold ph-shield-check text-ice"></i>
+      14-Day Money-Back Guarantee
+    </div>
+    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-5 leading-tight">
+      Ready to become an <br class="hidden sm:block"/>AI Architect?
+    </h2>
+    <p class="text-base text-white/70 mb-10 max-w-xl mx-auto leading-relaxed">
+      Join thousands of developers and IT professionals who have upgraded their skillsets, secured higher salaries, and learned to deploy real-world AI applications.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <a href="#pricing" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-white hover:bg-offwhite text-navy font-bold text-sm transition-colors shadow-lg">
+        Get Started Now
+        <i class="ph-bold ph-arrow-right text-orange"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-navy text-ice/70 pt-16 pb-10">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 pb-12 border-b border-ice/20">
+      
+      <div>
+        <a href="#" class="flex items-center gap-2 mb-4">
+          <div class="w-7 h-7 rounded-md bg-orange flex items-center justify-center">
+            <i class="ph-bold ph-lightning text-white text-sm"></i>
+          </div>
+          <span class="text-base font-bold text-white">tithi<span class="text-orange">.ai</span></span>
+        </a>
+        <p class="text-xs text-ice/60 max-w-sm leading-relaxed">
+          The premier online masterclass for IT professionals learning to build, deploy, and scale generative AI architectures.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-6 text-sm">
+        <a href="#curriculum" class="hover:text-orange transition-colors">Curriculum</a>
+        <a href="#outcomes" class="hover:text-orange transition-colors">Outcomes</a>
+        <a href="#pricing" class="hover:text-orange transition-colors">Pricing</a>
+        <a href="#" class="hover:text-orange transition-colors">Student Login</a>
+      </div>
+
+    </div>
+
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ice/60">
+      <p>© 2026 Tithi.ai. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+        <a href="#" class="hover:text-white transition-colors">Refund Policy</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- ===================== SCROLL REVEAL JS ===================== -->
+<script>
+  (function () {
+    const els = document.querySelectorAll('.reveal');
+    if (!els.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    els.forEach((el) => observer.observe(el));
+  })();
+</script>
+
+<!-- ===================== STICKY NAV SHADOW JS ===================== -->
+<script>
+  (function () {
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 8) {
+        nav.classList.add('shadow-md');
+      } else {
+        nav.classList.remove('shadow-md');
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
