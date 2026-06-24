@@ -3,49 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title>AI Course Content | Digiwind</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body, html { margin: 0; height: 100%; font-family: 'JetBrains Mono', monospace; background: #0f172a; color: #ffffff; overflow: hidden; }
-        .container { display: flex; height: 100vh; }
-        .panel { flex: 1; display: flex; flex-direction: column; border: 1px solid #334155; }
-        .carousel { flex-grow: 1; padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
-        .ide { background: #000; padding: 2rem; border-left: 1px solid #334155; display: flex; flex-direction: column; }
-        .nav { padding: 1rem; display: flex; gap: 1rem; border-top: 1px solid #334155; }
-        button { background: #2563eb; color: #fff; border: none; padding: 0.5rem 1rem; cursor: pointer; }
-        pre { background: #1e293b; padding: 1rem; flex-grow: 1; overflow: auto; }
-        .active { display: block; }
-        .hidden { display: none; }
+        body { background: #FAF6F0; color: #0A2947; font-family: 'JetBrains Mono', monospace; }
+        .nav-bar { background: #0A2947; color: #FAF6F0; height: 4rem; display: flex; align-items: center; padding: 0 2rem; }
+        .h-split { height: calc(100vh - 4rem); }
+        .ide-bg { background: #0A2947; }
+        .text-ice { color: #d1d5db; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="panel">
-            <div id="slides" class="carousel"></div>
-            <div class="nav">
-                <button onclick="prev()">[ PREV ]</button>
-                <button onclick="next()">[ NEXT ]</button>
+    <div class="nav-bar">DIGIWIND // AI ORCHESTRATOR</div>
+    <div class="flex h-split">
+        <div class="w-1/2 relative border-r border-slate-300">
+            <div class="swiper h-full">
+                <div class="swiper-wrapper" id="slides-wrapper">
+                    <!-- Slides injected by JS -->
+                </div>
+            </div>
+            <div class="absolute bottom-4 left-4 flex gap-2 z-10">
+                <button class="swiper-prev bg-[#FF6A1C] text-white px-4 py-2">[ PREV ]</button>
+                <button class="swiper-next bg-[#FF6A1C] text-white px-4 py-2">[ NEXT ]</button>
             </div>
         </div>
-        <div class="panel ide">
-            <h3>SIMULATED IDE</h3>
-            <pre id="ide-code">// Code will appear here</pre>
-            <pre id="ide-output">// Output log</pre>
+        <div class="w-1/2 ide-bg p-6 flex flex-col text-white">
+            <h2 class="text-[#FF6A1C] mb-4">SIMULATED IDE // LOG ANALYSIS</h2>
+            <pre id="ide-code" class="bg-black p-4 mb-4 flex-grow font-mono"></pre>
+            <pre id="ide-output" class="bg-black p-4 text-emerald-400 font-mono"></pre>
         </div>
     </div>
+
     <script>
-        const slides = [
-            { title: "Introduction to AI", code: "print('Hello AI')", output: "Hello AI" },
-            { title: "Neural Networks", code: "import torch\nmodel = torch.nn.Linear(10, 1)", output: "Layer initialized" },
-            { title: "Transformers", code: "attention = softmax(query @ key.T)", output: "Attention computed" }
+        const content = [
+            { t: "01 // Introduction to Transformers", c: "model = Transformer()", o: "Initializing attention layers..." },
+            { t: "02 // Scaled Dot-Product Attention", c: "attention = softmax(query @ key.T)", o: "Attention computed successfully." },
+            { t: "03 // Softmax Matrix Calculation", c: "output = attention @ value", o: "State matrices committed. Execution 0ms." }
         ];
-        let idx = 0;
-        function update() {
-            document.getElementById('slides').innerHTML = `<h1>${slides[idx].title}</h1>`;
-            document.getElementById('ide-code').innerText = slides[idx].code;
-            document.getElementById('ide-output').innerText = slides[idx].output;
-        }
-        function next() { if(idx < slides.length - 1) { idx++; update(); } }
-        function prev() { if(idx > 0) { idx--; update(); } }
-        update();
+
+        const wrapper = document.getElementById('slides-wrapper');
+        content.forEach(s => {
+            wrapper.innerHTML += `<div class="swiper-slide p-12 flex flex-col justify-center"><h1 class="text-3xl font-bold mb-6">${s.t}</h1><ul class="list-disc ml-6 space-y-2"><li>Concepts mapped to architecture.</li><li>Constraints optimized for inference.</li></ul></div>`;
+        });
+
+        const swiper = new Swiper('.swiper', {
+            navigation: { nextEl: '.swiper-next', prevEl: '.swiper-prev' },
+            on: {
+                slideChange: function () {
+                    const s = content[this.activeIndex];
+                    document.getElementById('ide-code').innerText = s.c;
+                    document.getElementById('ide-output').innerText = s.o;
+                }
+            }
+        });
+        // Initial set
+        document.getElementById('ide-code').innerText = content[0].c;
+        document.getElementById('ide-output').innerText = content[0].o;
     </script>
 </body>
 </html>
