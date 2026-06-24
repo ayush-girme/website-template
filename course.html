@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Course Content | Digiwind</title>
+    <style>
+        body, html { margin: 0; height: 100%; font-family: 'JetBrains Mono', monospace; background: #0f172a; color: #ffffff; overflow: hidden; }
+        .container { display: flex; height: 100vh; }
+        .panel { flex: 1; display: flex; flex-direction: column; border: 1px solid #334155; }
+        .carousel { flex-grow: 1; padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
+        .ide { background: #000; padding: 2rem; border-left: 1px solid #334155; display: flex; flex-direction: column; }
+        .nav { padding: 1rem; display: flex; gap: 1rem; border-top: 1px solid #334155; }
+        button { background: #2563eb; color: #fff; border: none; padding: 0.5rem 1rem; cursor: pointer; }
+        pre { background: #1e293b; padding: 1rem; flex-grow: 1; overflow: auto; }
+        .active { display: block; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="panel">
+            <div id="slides" class="carousel"></div>
+            <div class="nav">
+                <button onclick="prev()">[ PREV ]</button>
+                <button onclick="next()">[ NEXT ]</button>
+            </div>
+        </div>
+        <div class="panel ide">
+            <h3>SIMULATED IDE</h3>
+            <pre id="ide-code">// Code will appear here</pre>
+            <pre id="ide-output">// Output log</pre>
+        </div>
+    </div>
+    <script>
+        const slides = [
+            { title: "Introduction to AI", code: "print('Hello AI')", output: "Hello AI" },
+            { title: "Neural Networks", code: "import torch\nmodel = torch.nn.Linear(10, 1)", output: "Layer initialized" },
+            { title: "Transformers", code: "attention = softmax(query @ key.T)", output: "Attention computed" }
+        ];
+        let idx = 0;
+        function update() {
+            document.getElementById('slides').innerHTML = `<h1>${slides[idx].title}</h1>`;
+            document.getElementById('ide-code').innerText = slides[idx].code;
+            document.getElementById('ide-output').innerText = slides[idx].output;
+        }
+        function next() { if(idx < slides.length - 1) { idx++; update(); } }
+        function prev() { if(idx > 0) { idx--; update(); } }
+        update();
+    </script>
+</body>
+</html>
